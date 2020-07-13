@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: teamk8
+  labels:
+    app: backend
+spec:
+  type: NodePort
+  ports:
+  - port: 4000
+    targetPort: 4000
+    nodePort: 30379
+    protocol: TCP
+  selector:
+    app: backend
