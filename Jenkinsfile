@@ -2,14 +2,16 @@ currentBuild.displayName="Movies-app-#"+currentBuild.number
 pipeline {
     agent any
     environment{
-        DOCKER_TAG = getDockerTag()
+       dockerImage = ''
     }
     stages{
-        stage('Build Docker Image'){
-            steps{
-                sh "sudo docker build . -t srinivasareddy4218/movies-app:${DOCKER_TAG} "
-            }
+         stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
+      }
+    }
         stage('DockerHub Push'){
             steps{
                withCredentials([string(credentialsId: 'DockerPWD2', variable: 'DockerPWD2')]) {
