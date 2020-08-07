@@ -22,8 +22,8 @@
       steps{
         script {
           withCredentials([string(credentialsId:'DockerPWD2',variable:'DockerPWD2')]){
-            sh "docker login -u srinivasareddy4218 -p ${DockerPWD2}"
-          sh "docker push srinivasareddy4218/movie-app:${BUILD_NUMBER}"
+            sh "sudo docker login -u srinivasareddy4218 -p ${DockerPWD2}"
+          sh "sudo docker push srinivasareddy4218/movie-app:${BUILD_NUMBER}"
         }
        }   
       }
