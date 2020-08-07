@@ -1,7 +1,7 @@
  pipeline {
   environment {
      registry = "srinivasareddy4218/movies-app"
-    registryCredential = '	sree-docker-hub'
+    registryCredential = 'sree-docker-hub'
     dockerImage = ''
   }
   agent any
