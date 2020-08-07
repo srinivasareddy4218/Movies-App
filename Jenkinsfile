@@ -23,7 +23,7 @@
         script {
           withCredentials([string(credentialsId:'DockerPWD2',variable:'DockerPWD2')]){
             sh "docker login -u srinivasareddy4218 -p ${DockerPWD2}"
-          sh "docker push srinivasareddy4218/docker-kubernetes:${BUILD_NUMBER}"
+          sh "docker push srinivasareddy4218/movie-app:${BUILD_NUMBER}"
         }
        }   
       }
