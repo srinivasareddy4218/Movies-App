@@ -1,38 +1,25 @@
- pipeline {
-  environment {
-     registry = "srinivasareddy4218/movies-app"
-    registryCredential = 'sree-docker-hub'
-    dockerImage = ''
-  }
-  agent any
-  stages {
-    stage('Cloning Git') {
-      steps {
-        git credentialsId: 'sree-jenkins', url: 'https://github.com/srinivasareddy4218/Movies-App.git'
-      }
+currentBuild.displayName="movies-app-#"+currentBuild.number
+pipeline {
+    agent any
+    environment{
+        DOCKER_TAG = getDockerTag()
     }
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+    stages{
+        stage('Build Docker Image'){
+            steps{
+                sh "sudo docker build . -t srinivasareddy4218/movies-app:${DOCKER_TAG} "
+            }
         }
-      }
-    }
-    stage('Building image push') {
-      steps{
-        script {
-          withCredentials([string(credentialsId:'DockerPWD2',variable:'DockerPWD2')]){
-            sh "sudo docker login -u srinivasareddy4218 -p ${DockerPWD2}"
-          sh "sudo docker push srinivasareddy4218/movie-app:${BUILD_NUMBER}"
+        stage('DockerHub Push'){
+            steps{
+                withCredentials([string(credentialsId:'DockerPWD2',variable:'DockerPWD2')]) {
+                    sh "sudo docker login -u arikatlasrinivasareddy4218 -p ${DockerPWD2}"
+                    sh "sudo docker push srinivasareddy4218/movies-app:${DOCKER_TAG}"
+                }
+            }
         }
-       }   
-      }
-    }
-   
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
+     def getDockerTag(){
+    def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
+    return tag
   }
-}
+ }     
