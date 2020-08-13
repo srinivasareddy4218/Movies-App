@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: teamk8
+  namespace: msslabs
   labels:
     app: frontend
 spec:
