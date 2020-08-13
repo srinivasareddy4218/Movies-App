@@ -8,7 +8,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - nodePort:
+    - nodePort: 31353
     - port: 80
       targetPort: 80
       protocol: TCP
