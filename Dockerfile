@@ -1,5 +1,5 @@
 FROM node
-COPY /Movie-App/frontend/package.json .
+COPY /frontend/package.json .
 RUN  npm install
 
 COPY server.js .
