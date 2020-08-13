@@ -6,8 +6,9 @@ metadata:
   labels:
     app: frontend
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
+    - nodePort:
     - port: 80
       targetPort: 80
       protocol: TCP
