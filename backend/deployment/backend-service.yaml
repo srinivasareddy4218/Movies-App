@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend
-  namespace: teamk8
+  namespace: msslabs
   labels:
     app: backend
 spec:
