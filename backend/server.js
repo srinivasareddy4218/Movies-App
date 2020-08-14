@@ -11,7 +11,7 @@ const HOSTNAME = 'prod' === args[2] ? '0.0.0.0' : 'localhost';
 const MONGO_SERVICE_NAME = 'prod' === args[2] ? 'mongo' : 'localhost';
 const MONGO_PORT = 27017;
 const MONGO_DB_NAME = 'movies-db';
-const MONGO_CONNECTION = 'mongodb://mongo:27017/movies-db';
+const MONGO_CONNECTION = 'mongodb://' + MONGO_SERVICE_NAME + ':' + MONGO_PORT + '/' + MONGO_DB_NAME;
 
 app.use(bodyParser.json());
 
