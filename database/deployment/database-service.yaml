@@ -11,6 +11,5 @@ spec:
     - port: 27017
       targetPort: 27017
       nodePort: 30007
-      protocol: TCP
   selector:
     app: mongo
