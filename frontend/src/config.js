@@ -7,5 +7,5 @@ const getProtocol = () => window.location.protocol;
 const getBackend = () => getProtocol() + "//" + BACKEND_NAME + getDomain();
 
 export const config = {
-  baseURL: "gke-cluster-1-default-pool-7c4ce8f4-wvfs:31519"
+  baseURL: "http://mss1k8node3.eastus.cloudapp.azure.com:30379"
 };
